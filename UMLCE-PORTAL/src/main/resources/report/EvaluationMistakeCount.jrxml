@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.0.3.final using JasperReports Library version 6.0.3  -->
+<!-- 2015-03-26T09:39:04 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="users" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5d1e56d0-880e-4363-8a2c-be85fbaf5ff2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="Title" forecolor="#038EDB" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#6C6763" fontName="Arial" fontSize="20"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<field name="errorName" class="java.lang.String"/>
+	<field name="count" class="java.lang.Integer"/>
+	<field name="errordetail" class="java.util.List"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="49" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="1" y="0" width="802" height="1" uuid="3cd195fe-9815-4cf9-ad96-b963a29cb6ef"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="110" y="10" width="320" height="20" uuid="183e6ad3-c3ef-4193-ab61-09972d2bdff0"/>
+				<textFieldExpression><![CDATA[$F{errorName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="SubTitle" x="480" y="10" width="50" height="20" uuid="9925b69a-2fe9-45cf-ba25-49d8b55e95ac"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="14" isBold="true" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Count: ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="540" y="10" width="115" height="20" uuid="58c48fb3-4915-4a5e-9d14-637604333512"/>
+				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement x="0" y="1" width="666" height="40" forecolor="#A94442" backcolor="#F2DEDE" uuid="9fa8e43b-832b-4088-b987-b35170e9d852"/>
+			</frame>
+			<staticText>
+				<reportElement style="SubTitle" x="0" y="10" width="100" height="20" uuid="e0834669-4f29-4c39-91c5-1e45fbd1c3ee"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="14" isBold="true" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Mistake Name: ]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="1" y="0" width="802" height="1" uuid="3cd195fe-9815-4cf9-ad96-b963a29cb6ef"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<detail>
+		<band height="122" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="10" width="803" height="100" uuid="e1979d52-4daf-4cd2-888f-5a1b3038d9e7"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{errordetail})]]></dataSourceExpression>
+				<subreportExpression><![CDATA["report/EvaluationMistakeDetail.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

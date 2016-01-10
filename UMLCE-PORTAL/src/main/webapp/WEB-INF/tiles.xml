@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+
+	<!-- Master -->
+	<definition name="master.page" template="/public/template/master.jsp">
+		<!-- <put-attribute name="header" value="/public/template/header.jsp" /> 
+			<put-attribute name="footer" value="/public/template/footer.jsp" /> -->
+	</definition>
+
+
+
+
+	<!-- Pages -->
+	<definition name="welcomePage" extends="master.page">
+		<put-attribute name="body" value="/portal/welcomePage.jsp" />
+	</definition>
+
+	<definition name="calendarPage" extends="master.page">
+		<put-attribute name="body" value="/portal/index/calendar.jsp" />
+	</definition>
+
+	<definition name="profilePage" extends="master.page">
+		<put-attribute name="body" value="/portal/index/profile.jsp" />
+	</definition>
+
+	<!-- User Controller -->
+	<definition name="userIndex" extends="master.page">
+		<put-attribute name="body" value="/portal/userIndex.jsp" />
+	</definition>
+	<definition name="userList" extends="master.page">
+		<put-attribute name="body" value="/portal/user/Userslist.jsp" />
+	</definition>
+
+	<definition name="createUser" extends="master.page">
+		<put-attribute name="body" value="/portal/user/create.jsp" />
+	</definition>
+
+	<definition name="addUser" extends="master.page">
+		<put-attribute name="body" value="/portal/user/add.jsp" />
+	</definition>
+
+	<!-- Role Controller -->
+
+	<definition name="createRole" extends="master.page">
+		<put-attribute name="body" value="/portal/role/create.jsp" />
+	</definition>
+
+
+	<definition name="addRole" extends="master.page">
+		<put-attribute name="body" value="/portal/role/add.jsp" />
+	</definition>
+
+	<!-- Permission Controller -->
+
+	<definition name="createPermission" extends="master.page">
+		<put-attribute name="body" value="/portal/permission/create.jsp" />
+	</definition>
+
+	<definition name="addPermission" extends="master.page">
+		<put-attribute name="body" value="/portal/permission/add.jsp" />
+	</definition>
+
+
+
+
+	<definition name="contactsList" extends="master.page">
+		<put-attribute name="body" value="/portal/contacts/contacts.jsp" />
+	</definition>
+
+	<!-- Assignment Controller -->
+
+
+
+	<definition name="createAssignment" extends="master.page">
+		<put-attribute name="body" value="/portal/assignment/create.jsp" />
+	</definition>
+
+	<definition name="viewAssignments" extends="master.page">
+		<put-attribute name="body" value="/portal/assignment/view.jsp" />
+	</definition>
+
+	<definition name="submitAssignment" extends="master.page">
+		<put-attribute name="body" value="/portal/assignment/submit.jsp" />
+	</definition>
+
+	<definition name="viewMyAssignments" extends="master.page">
+		<put-attribute name="body"
+			value="/portal/assignment/viewMyAssignments.jsp" />
+	</definition>
+
+	<definition name="viewSubmissions" extends="master.page">
+		<put-attribute name="body"
+			value="/portal/assignment/viewSubmissions.jsp" />
+	</definition>
+
+	<definition name="evaluationCritaria" extends="master.page">
+		<put-attribute name="body" value="/portal/assignment/evaluation.jsp" />
+	</definition>
+
+
+
+	<!-- Results Controller -->
+
+
+
+	<definition name="submissionResult" extends="master.page">
+		<put-attribute name="body"
+			value="/portal/assignment/results/submissionresult.jsp" />
+	</definition>
+
+	<definition name="chartsResult" extends="master.page">
+		<put-attribute name="body"
+			value="/portal/assignment/results/charts.jsp" />
+	</definition>
+
+
+
+
+
+	<definition name="login" template="/public/login.jsp">
+	</definition>
+
+
+	<!-- Reporting Controller -->
+
+	<definition name="reportIndex" template="/portal/report/users.jsp">
+	</definition>
+
+	<definition name="Reports" extends="master.page">
+		<put-attribute name="body"
+			value="/portal/assignment/reports/mistakesReport.jsp" />
+	</definition>
+
+	<definition name="assignmentReports" extends="master.page">
+		<put-attribute name="body"
+			value="/portal/assignment/reports/Assignmentslist.jsp" />
+	</definition>
+
+	<definition name="userReports" extends="master.page">
+		<put-attribute name="body"
+			value="/portal/assignment/reports/Userslist.jsp" />
+	</definition>
+
+	<definition name="evaluationAssignmentReports" extends="master.page">
+		<put-attribute name="body"
+			value="/portal/assignment/reports/EvaluationAssignmentsReport.jsp" />
+	</definition>
+
+	<definition name="evaluationUserReports" extends="master.page">
+		<put-attribute name="body"
+			value="/portal/assignment/reports/EvaluationUsersReport.jsp" />
+	</definition>
+
+	<definition name="plagarismAssignmentReports" extends="master.page">
+		<put-attribute name="body"
+			value="/portal/assignment/reports/AssignmentsPlagarismlist.jsp" />
+	</definition>
+
+	<definition name="plagarismAssignmentUserReports" extends="master.page">
+		<put-attribute name="body"
+			value="/portal/assignment/reports/AssignmentUserPlagarismlist.jsp" />
+	</definition>
+
+	<definition name="plagarismUserReports" extends="master.page">
+		<put-attribute name="body"
+			value="/portal/assignment/reports/UsersPlagarismlist.jsp" />
+	</definition>
+
+	<definition name="changeService" extends="master.page">
+		<put-attribute name="body" value="/portal/index/changeService.jsp" />
+	</definition>
+
+</tiles-definitions>

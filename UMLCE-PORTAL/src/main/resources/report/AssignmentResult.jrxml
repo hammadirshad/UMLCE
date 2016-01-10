@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.0.3.final using JasperReports Library version 6.0.3  -->
+<!-- 2015-03-26T13:43:14 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="users" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5d1e56d0-880e-4363-8a2c-be85fbaf5ff2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="Title" forecolor="#038EDB" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#6C6763" fontName="Arial" fontSize="20"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<field name="name" class="java.lang.String"/>
+	<field name="rollNo" class="java.lang.String"/>
+	<field name="submitionDate" class="java.lang.String"/>
+	<field name="assignmentTitle" class="java.lang.String"/>
+	<field name="assignmentType" class="java.lang.String"/>
+	<field name="mistakes" class="java.util.List"/>
+	<field name="evaluationResult" class="java.util.List"/>
+	<field name="mappingMistakes" class="java.util.List"/>
+	<field name="plagarisms" class="java.util.List"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="190" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="120" y="0" width="683" height="62" uuid="eb1928a5-c7e4-455f-b284-d65529639c27">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="24" isItalic="true" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[National University of Computer and Emerging Sciences]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="260" y="62" width="380" height="28" uuid="dc576787-7fcd-4cf2-9ac1-98f4e41d9545"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[UML Diagram Comparator and Evaluator]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="100" height="84" uuid="786bc91d-7762-42bf-a229-badbd7ae3e37"/>
+				<imageExpression><![CDATA["report/NULogoRound.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="1" y="100" width="802" height="1" uuid="3cd195fe-9815-4cf9-ad96-b963a29cb6ef"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="110" width="90" height="15" uuid="190105a0-1e42-4e7f-be6f-ecd76af2c778">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box rightPadding="1"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Name : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="135" width="90" height="15" uuid="cecc57c2-7b3e-486b-b230-c8ca5a7e459d">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box rightPadding="1"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Roll No : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="387" y="110" width="110" height="15" uuid="129570ea-d4e7-4d68-b77e-04ee51a0ec20">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box rightPadding="1"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Assignment Title : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="387" y="135" width="110" height="15" uuid="d0550843-2e5e-424c-877f-2c37207b1d61">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box rightPadding="1"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Assignment Type : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="160" width="90" height="15" uuid="a1dacdee-6bda-4e90-9af0-e45cba3c36cb">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box rightPadding="1"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Submition Date : ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="90" y="110" width="277" height="15" uuid="b2bab507-8144-44f7-b710-1f6775d3faf3"/>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="90" y="135" width="277" height="15" uuid="1a40e067-0b7e-4795-8f02-16f145116e07"/>
+				<textFieldExpression><![CDATA[$F{rollNo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="91" y="160" width="276" height="15" uuid="bfd351bf-84c6-4b33-931f-5b605f51fa33"/>
+				<textFieldExpression><![CDATA[$F{submitionDate}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="500" y="110" width="291" height="15" uuid="f502ae0a-adb1-459d-b55f-178d4c2c93df"/>
+				<textFieldExpression><![CDATA[$F{assignmentTitle}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="500" y="135" width="291" height="15" uuid="2e0e5e84-5b48-4c91-903e-cd8b82a3e9d7"/>
+				<textFieldExpression><![CDATA[$F{assignmentType}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="161" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="1" y="10" width="380" height="28" uuid="dc576787-7fcd-4cf2-9ac1-98f4e41d9545"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Assignment Evaluation]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="40" width="799" height="100" isPrintWhenDetailOverflows="true" uuid="87899629-f103-41fa-912d-1d12bfdadef6"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{evaluationResult})]]></dataSourceExpression>
+				<subreportExpression><![CDATA["report/Evaluation.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="159" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="0" y="-1" width="380" height="28" uuid="dc576787-7fcd-4cf2-9ac1-98f4e41d9545"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Assignment Mistakes]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="40" width="799" height="100" uuid="59a60bc7-3c5a-4662-8176-335c960ffccd"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{mistakes})]]></dataSourceExpression>
+				<subreportExpression><![CDATA["report/Mistakes.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="159" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="1" y="10" width="380" height="28" uuid="dc576787-7fcd-4cf2-9ac1-98f4e41d9545"/>
+				<textElement>
+					<font fontName="Arial" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Assignment Plagiarsim]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="40" width="799" height="100" uuid="59a60bc7-3c5a-4662-8176-335c960ffccd"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{plagarisms})]]></dataSourceExpression>
+				<subreportExpression><![CDATA["report/Plagiarsim.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="159" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="1" y="10" width="380" height="28" uuid="dc576787-7fcd-4cf2-9ac1-98f4e41d9545"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Assignment Mapping Mistakes]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="40" width="799" height="100" uuid="b215d9a9-3ef2-4cf5-8fc6-ef5a4e2ff09b"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{mappingMistakes})]]></dataSourceExpression>
+				<subreportExpression><![CDATA["report/CodeMapping.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="39" splitType="Stretch">
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="699" y="12" width="100" height="16" uuid="22e4a4e5-2dd8-4e90-985e-d29208004530"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="281" y="10" width="105" height="20" uuid="7a429260-26f6-4519-95b4-6de1415de20f"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="386" y="10" width="105" height="20" uuid="4b1db3a7-12cb-470f-a57e-a09bc20b699d"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

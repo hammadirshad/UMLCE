@@ -1,0 +1,90 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" template="/theme/master.xhtml">
+	<ui:define name="styles">
+		<link href="../resources/css/error.css" rel="stylesheet"
+			type="text/css" />
+	</ui:define>
+
+	<ui:define name="body">
+		<!-- BEGIN PAGE CONTAINER -->
+		<div class="page-container">
+			<!-- BEGIN PAGE CONTENT -->
+			<div class="page-content">
+				<div class="container">
+					<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+					<div class="modal fade" id="portlet-config" tabindex="-1"
+						role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true"></button>
+									<h4 class="modal-title">Modal title</h4>
+								</div>
+								<div class="modal-body">Widget settings form goes here</div>
+								<div class="modal-footer">
+									<button type="button" class="btn blue">Save changes</button>
+									<button type="button" class="btn default" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+					<!-- /.modal -->
+					<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+					<!-- BEGIN PAGE BREADCRUMB -->
+					<ul class="page-breadcrumb breadcrumb">
+						<li><h:link outcome="/index.xhtml">Home</h:link><i
+							class="fa fa-circle"></i></li>
+						<li><a>Pages</a><i class="fa fa-circle"></i></li>
+
+						<li class="active">404</li>
+					</ul>
+					<!-- END PAGE BREADCRUMB -->
+					<!-- BEGIN PAGE CONTENT INNER -->
+					<div class="row">
+						<div class="col-md-12 page-404">
+							<div class=" number">404</div>
+							<div class="details">
+								<h3>Oops! You're lost.</h3>
+								<p>
+									We can not find the page you're looking for.<br />
+									<h:link outcome="/index.xhtml">Return home</h:link>
+									or try the search bar below.
+								</p>
+								<form action="#">
+									<div class="input-group input-medium">
+										<input type="text" class="form-control"
+											placeholder="keyword..." /> <span class="input-group-btn">
+											<button type="submit" class="btn blue">
+												<i class="fa fa-search"></i>
+											</button>
+										</span>
+									</div>
+									<!-- /input-group -->
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- END PAGE CONTENT INNER -->
+				</div>
+				<!-- BEGIN PAGE CONTENT -->
+			</div>
+			<!-- END PAGE CONTENT -->
+		</div>
+		<!-- END PAGE CONTAINER -->
+	</ui:define>
+	<ui:define name="scripts">
+		<script>
+			jQuery(document).ready(function() {
+				// initiate layout and plugins
+				Metronic.init(); // init metronic core components
+				Layout.init(); // init current layout
+				Demo.init(); // init demo features
+			});
+		</script>
+	</ui:define>
+</ui:composition>

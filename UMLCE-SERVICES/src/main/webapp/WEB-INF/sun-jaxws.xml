@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime"
+	version="2.0">
+	<endpoint name="IdentifierService" implementation="com.mbe.umlce.service.Imp.IdentifierService"
+		url-pattern="/identifier" />
+	<endpoint name="EvaluatorService" implementation="com.mbe.umlce.service.Imp.EvaluatorService"
+		url-pattern="/evaluator" />
+	<endpoint name="MaperService" implementation="com.mbe.umlce.service.Imp.MaperService"
+		url-pattern="/maper" />
+	<endpoint name="CheckerService" implementation="com.mbe.umlce.service.Imp.CheckerService"
+		url-pattern="/plagiarism" />
+</endpoints>

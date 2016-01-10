@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+
+	<security:global-method-security
+		secured-annotations="enabled" pre-post-annotations="enabled">
+		<security:expression-handler ref="expressionHandler" />
+	</security:global-method-security>
+
+	<!-- <bean id="expressionHandler" class="com.mbe.umlce.security.ExtendedMethodSecurityExpressionHandler"> 
+		</bean> -->
+
+	<bean id="expressionHandler"
+		class="org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler">
+		<property name="permissionEvaluator" ref="myPermissionEvaluator" />
+	</bean>
+
+	<bean id="myPermissionEvaluator" class="com.mbe.umlce.security.MyPermissionEvaluator" />
+
+
+
+
+	<bean id="authSuccessHandler" class="com.mbe.umlce.interceptor.AuthSuccessHandler" />
+
+	<security:http auto-config="true" use-expressions="true"
+		access-denied-page="/login?error=403">
+
+		<security:intercept-url pattern="/" access="permitAll" />
+		<security:form-login login-page="/login"
+			authentication-failure-url="/login?error=403"
+			authentication-success-handler-ref="authSuccessHandler" />
+
+		<security:intercept-url pattern="/portal/**"
+			access="isAuthenticated()" />
+
+		<security:logout invalidate-session="true"
+			logout-success-url="/login" logout-url="/logout" />
+	</security:http>
+
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:jdbc-user-service
+				data-source-ref="dataSource"
+				users-by-username-query="select  username, password, enabled from portal_user where username = ?"
+				authorities-by-username-query="select u.username as login ,r.name as role from portal_user u join portal_user_role p on u.user_id=p.portal_user_user_id
+join role r on r.role_id=p.roles_role_id where u.username = ?" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+</beans>

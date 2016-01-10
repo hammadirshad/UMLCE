@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.0.3.final using JasperReports Library version 6.0.3  -->
+<!-- 2015-03-26T09:32:13 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="users" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5d1e56d0-880e-4363-8a2c-be85fbaf5ff2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="Title" forecolor="#038EDB" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#6C6763" fontName="Arial" fontSize="20"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<field name="totalMarks" class="java.lang.Double"/>
+	<field name="studentMarks" class="java.lang.Double"/>
+	<field name="errors" class="java.util.List"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="39" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="1" y="0" width="802" height="1" uuid="3cd195fe-9815-4cf9-ad96-b963a29cb6ef"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="SubTitle" x="10" y="10" width="90" height="20" uuid="1f912282-9fe9-4edc-a087-ef6c3b10b09a"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="14" isBold="true" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Total Marks: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="380" y="10" width="110" height="20" uuid="67095b4d-aab9-406a-b54c-0d8143c096a2"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="14" isBold="true" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Student Marks:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="110" y="10" width="150" height="20" uuid="4618b42f-858e-4fbb-bd8a-3b3cf3e0f575"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{totalMarks}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="500" y="10" width="150" height="20" uuid="7fd783af-3295-408d-84f0-f5e0a672676d"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{studentMarks}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="114" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="1" y="0" width="802" height="1" uuid="3cd195fe-9815-4cf9-ad96-b963a29cb6ef"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<subreport>
+				<reportElement x="0" y="10" width="803" height="95" uuid="bc506355-b3aa-4c9a-bae8-bffa30839fa8"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{errors})]]></dataSourceExpression>
+				<subreportExpression><![CDATA["report/EvaluationMistakeCount.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="9" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

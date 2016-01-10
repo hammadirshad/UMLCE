@@ -1,0 +1,306 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" template="/theme/master.xhtml">
+	<ui:define name="title">
+	System Sequence Diagram Evaluation
+	</ui:define>
+	<ui:define name="body">
+		<div class="page-container">
+			<!-- BEGIN PAGE CONTENT -->
+			<div class="page-content">
+				<div class="container">
+					<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+					<div class="modal fade" id="portlet-config" tabindex="-1"
+						role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true"></button>
+									<h4 class="modal-title">Modal title</h4>
+								</div>
+								<div class="modal-body">Widget settings form goes here</div>
+								<div class="modal-footer">
+									<button type="button" class="btn blue">Save changes</button>
+									<button type="button" class="btn default" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+					<!-- /.modal -->
+					<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+					<!-- BEGIN PAGE BREADCRUMB -->
+					<ul class="page-breadcrumb breadcrumb">
+						<li><h:link outcome="/index.xhtml">Home</h:link><i
+							class="fa fa-circle"></i></li>
+						<li><a href="#">Evaluation</a> <i class="fa fa-circle"></i></li>
+						<li class="active">System Sequence Diagram Evaluation</li>
+					</ul>
+					<!-- END PAGE BREADCRUMB -->
+					<div class="row">
+						<div class="col-md-12">
+							<div class="tab-content">
+								<div class="tab-pane active" id="tab_0">
+									<div class="portlet box green">
+										<div class="portlet-title">
+											<div class="caption">
+												<i class="fa fa-gift"></i>System Sequence Diagram Evaluation
+											</div>
+											<div class="tools">
+												<a href="javascript:;" class="collapse"> </a> <a
+													href="#portlet-config" data-toggle="modal" class="config">
+												</a> <a href="javascript:;" class="reload"> </a> <a
+													href="javascript:;" class="remove"> </a>
+											</div>
+										</div>
+										<div class="portlet-body form">
+											<f:metadata>
+												<f:event type="preRenderView"
+													listener="#{evaluator.onPageLoad}" />
+											</f:metadata>
+											<!-- BEGIN FORM-->
+											<h:form id="inputForm" enctype="multipart/form-data"
+												class="form-horizontal">
+
+												<div class="form-actions">
+													<div class="row">
+														<div class="col-md-offset-3 col-md-9">
+															<span class="btn green fileinput-button"> <i
+																class="fa fa-upload"></i> <span> Upload Model...
+															</span> <h:inputFile id="diagram" label="Upload Model"
+																	value="#{evaluator.modelDiagram}" required="true"
+																	requiredMessage="File not selected !!">
+																	<f:ajax render="inputForm:f1name"
+																		execute="inputForm:diagram" />
+																	<!-- FileUploadValidator for file validation -->
+																	<!--  <f:validator validatorId="FileUploadValidator" /> -->
+																</h:inputFile>
+															</span>
+															<BLINK></BLINK>
+															<span class="btn green fileinput-button"> <i
+																class="fa fa-upload"></i> <span> Upload
+																	Solution... </span> <h:inputFile id="solution"
+																	label="Upload Model"
+																	value="#{evaluator.solutionDiagram}" required="true"
+																	requiredMessage="File not selected !!">
+																	<f:ajax render="inputForm:f2name"
+																		execute="inputForm:solution" />
+																	<!-- FileUploadValidator for file validation -->
+																	<!--  <f:validator validatorId="FileUploadValidator" /> -->
+																</h:inputFile>
+															</span>
+															<BLINK></BLINK>
+															<h:commandButton id="loadModel" class="btn blue start"
+																action="#{evaluator.getSystemSequenceModel()}"
+																value="Load Model"
+																style="display:#{evaluator.loadModel}">
+																<f:ajax render="EvaluationPanel inputForm:loadModel"
+																	execute="@form" />
+															</h:commandButton>
+
+															<br />
+															<h:outputLabel id="f1name"
+																value="#{evaluator.modelDiagram.submittedFileName}"></h:outputLabel>
+															<BLINK></BLINK>
+															<h:outputLabel id="f2name"
+																value="#{evaluator.solutionDiagram.submittedFileName}"></h:outputLabel>
+
+
+														</div>
+													</div>
+												</div>
+
+												<hr />
+												<h:panelGroup id="EvaluationPanel"
+													style="display:#{evaluator.displayPanel}">
+													<div class="portlet light">
+														<div class="portlet-title">
+															<div class="caption">
+																<span
+																	class="caption-subject font-green-sharp bold uppercase"><h2>Select
+																		the required Options</h2></span>
+															</div>
+														</div>
+
+														<hr />
+														<div class="portlet-body">
+															<div class="tabbable-custom nav-justified">
+																<ul class="nav nav-tabs nav-justified">
+																	<li class="active"><a href="#tab_1_1_1"
+																		data-toggle="tab"> Life Lines </a></li>
+																	<li><a href="#tab_1_1_2" data-toggle="tab">
+																			Operations </a></li>
+																	<li><a href="#tab_1_1_3" data-toggle="tab">
+																			Syntax and semantic Mistakes </a></li>
+																</ul>
+																<div class="tab-content">
+																	<div class="tab-pane active" id="tab_1_1_1">
+
+																		<div
+																			class="table-scrollable table-scrollable-borderless">
+																			<h:dataTable value="#{evaluator.lifelines}"
+																				var="clas"
+																				styleClass="table table-hover table-light"
+																				headerClass="uppercase" rowClasses="fit">
+																				<h:column>
+																					<f:facet name="header">Life Lines Name</f:facet>
+					#{clas.elementName}
+				</h:column>
+																				<h:column>
+																					<f:facet name="header">Essential/Non-Essential</f:facet>
+																					<h:selectBooleanCheckbox value="#{clas.essential}" />
+																				</h:column>
+																				<h:column>
+																					<f:facet name="header">Marks To Deduct</f:facet>
+																					<h:inputText styleClass="form-control"
+																						value="#{clas.marks}" />
+																				</h:column>
+																			</h:dataTable>
+																		</div>
+																		<br />
+																		<hr />
+																	</div>
+																	<div class="tab-pane" id="tab_1_1_2">
+																		<div
+																			class="table-scrollable table-scrollable-borderless">
+																			<h:dataTable value="#{evaluator.oprations}"
+																				var="clas"
+																				styleClass="table table-hover table-light"
+																				headerClass="uppercase" rowClasses="fit">
+																				<h:column>
+																					<f:facet name="header">Operation Name</f:facet>
+					#{clas.elementName}
+				</h:column>
+																				<h:column>
+																					<f:facet name="header">Essential/Non-Essential</f:facet>
+																					<h:selectBooleanCheckbox value="#{clas.essential}" />
+																				</h:column>
+																				<h:column>
+																					<f:facet name="header">Marks To Deduct</f:facet>
+																					<h:inputText styleClass="form-control"
+																						value="#{clas.marks}" />
+																				</h:column>
+																			</h:dataTable>
+																		</div>
+																		<br />
+																		<hr />
+																	</div>
+																	<div class="tab-pane" id="tab_1_1_3">
+																		<div
+																			class="table-scrollable table-scrollable-borderless">
+																			<h:dataTable value="#{evaluator.mistakes}"
+																				var="mistake"
+																				styleClass="table table-hover table-light"
+																				headerClass="uppercase" rowClasses="fit">
+																				<h:column>
+																					<f:facet name="header">Mistake</f:facet>
+					#{mistake.elementName}
+				</h:column>
+																				<h:column>
+																					<f:facet name="header">Essential/Non-Essential</f:facet>
+																					<h:selectBooleanCheckbox
+																						value="#{mistake.essential}" />
+																				</h:column>
+																				<h:column>
+																					<f:facet name="header">Marks To Deduct</f:facet>
+																					<h:inputText styleClass="form-control"
+																						value="#{mistake.marks}" />
+																				</h:column>
+																			</h:dataTable>
+																		</div>
+																		<br />
+																		<hr />
+																	</div>
+																</div>
+															</div>
+														</div>
+														Total Marks
+														<div class="form-group">
+															<div class="col-md-9">
+																<h:inputText id="totalMarks"
+																	styleClass="col-md-3 form-control input-medium"
+																	value="#{evaluator.totalMarks}"></h:inputText>
+
+																<div class="col-md-1"></div>
+																<h:commandButton
+																	action="#{evaluator.evaluateSystemSequenceDiagram()}"
+																	value="Evaluate"
+																	styleClass="col-md-2 btn btn-default green">
+																	<f:ajax render="ResultPanel EvaluationPanel"
+																		execute="@form" />
+																</h:commandButton>
+															</div>
+															<br /> <br /> <br />
+														</div>
+													</div>
+												</h:panelGroup>
+
+												<h:panelGroup id="ResultPanel"
+													style="display:#{evaluator.resultPanel}">
+													<div class="row list-separated col-md-offset-1">
+														<div class="col-md-3 col-sm-3 col-xs-6">
+															<div class="font-grey-mint font-sm">
+																<b>Total Marks:</b>
+															</div>
+															<div class="uppercase font-hg font-red-flamingo">
+																<span>#{evaluator.totalMarks}</span>
+															</div>
+														</div>
+														<div class="col-md-3 col-sm-3 col-xs-6">
+															<div class="font-grey-mint font-sm">
+																<b>Student Marks: </b>
+															</div>
+															<div class="uppercase font-hg theme-font">
+																<span>#{evaluator.studentMarks}</span>
+															</div>
+														</div>
+													</div>
+													<br />
+													<hr />
+													<ui:repeat value="#{evaluator.evaluationResult}"
+														var="details">
+														<div class="alert alert-danger col-md-6">
+															<b>Mistake Name: </b> <span>#{details.errorName}</span> <b>Mistake
+																Count:</b> <span>#{details.errorCount}</span>
+														</div>
+														<br />
+
+														<div class="table-scrollable table-scrollable-borderless">
+															<h:dataTable
+																value="${evaluator.setGetEvaluationResult(details.detail)}"
+																var="detail" styleClass="table table-hover table-light"
+																headerClass="uppercase" rowClasses="fit">
+																<h:column>
+																	<f:facet name="header">Element Name</f:facet>
+					#{detail.elementName}
+				</h:column>
+																<h:column>
+																	<f:facet name="header">Error Discption</f:facet>
+					#{detail.errorDiscption}
+				</h:column>
+															</h:dataTable>
+														</div>
+														<br />
+													</ui:repeat>
+												</h:panelGroup>
+
+
+
+											</h:form>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END PAGE CONTENT -->
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+

@@ -1,0 +1,184 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" template="/theme/master.xhtml">
+	<ui:define name="title">
+	State Machine Diagram Mistakes
+	</ui:define>
+	<ui:define name="body">
+		<div class="page-container">
+			<!-- BEGIN PAGE CONTENT -->
+			<div class="page-content">
+				<div class="container">
+					<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+					<div class="modal fade" id="portlet-config" tabindex="-1"
+						role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true"></button>
+									<h4 class="modal-title">Modal title</h4>
+								</div>
+								<div class="modal-body">Widget settings form goes here</div>
+								<div class="modal-footer">
+									<button type="button" class="btn blue">Save changes</button>
+									<button type="button" class="btn default" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+					<!-- /.modal -->
+					<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+					<!-- BEGIN PAGE BREADCRUMB -->
+					<ul class="page-breadcrumb breadcrumb">
+						<li><h:link outcome="/index.xhtml">Home</h:link><i
+							class="fa fa-circle"></i></li>
+						<li><a href="#">Mistakes</a> <i class="fa fa-circle"></i></li>
+						<li class="active">State Machine Diagram Mistakes</li>
+					</ul>
+					<!-- END PAGE BREADCRUMB -->
+					<div class="row">
+						<div class="col-md-12">
+							<div class="tab-content">
+								<div class="tab-pane active" id="tab_0">
+									<div class="portlet box green">
+										<div class="portlet-title">
+											<div class="caption">
+												<i class="fa fa-gift"></i>State Machine Diagram Mistakes
+											</div>
+											<div class="tools">
+												<a href="javascript:;" class="collapse"> </a> <a
+													href="#portlet-config" data-toggle="modal" class="config">
+												</a> <a href="javascript:;" class="reload"> </a> <a
+													href="javascript:;" class="remove"> </a>
+											</div>
+										</div>
+										<div class="portlet-body form">
+											<f:metadata>
+												<f:event type="preRenderView"
+													listener="#{identifier.onPageLoad}" />
+											</f:metadata>
+											<!-- BEGIN FORM-->
+											<h:form id="inputForm" enctype="multipart/form-data"
+												class="form-horizontal">
+												<div class="form-actions">
+													<div class="row">
+														<div class="col-md-8">
+															<span class="btn green fileinput-button"> <i
+																class="fa fa-plus"></i> <span> Add files... </span> <h:inputFile
+																	id="file" label="Upload Model"
+																	value="#{identifier.diagram}" required="true"
+																	requiredMessage="File not selected !!"
+																	valueChangeListener="#{identifier.diagramValueChange}"
+																	validator="#{identifier.diagramValidator}">
+																	<f:ajax render="inputForm:diagramLable"
+																		execute="inputForm:file" />
+																	<!--  <f:validator validatorId="FileUploadValidator" /> -->
+																</h:inputFile>
+															</span>
+															<BLINK></BLINK>
+															<h:commandButton id="submit" class="btn blue start"
+																action="#{identifier.checkStateMachineDiagramMistakes()}"
+																value="Upload File">
+																<f:ajax render="inputForm:mis" execute="inputForm" />
+															</h:commandButton>
+															<br />
+															<!-- The table listing the files available for upload/download -->
+
+															<h:panelGroup id="diagramLable"
+																style="display:#{identifier.diagramPanel}">
+																<table role="presentation"
+																	class="table table-striped clearfix">
+																	<tbody class="files">
+																		<tr class="template-upload fade in">
+																			<td><span class="preview"></span></td>
+																			<td>
+																				<p class="name">
+																					<h:outputLabel id="fileName"
+																						value="#{identifier.diagram.submittedFileName}" />
+																				</p> <strong
+																				class="error text-danger label label-danger"><h:message
+																						for="inputForm:file" /></strong>
+																			</td>
+																			<td>
+																				<p class="size">
+																					<h:outputLabel id="fileSize"
+																						value="#{identifier.fileSize}" />
+																					KB
+																				</p> <h:commandButton id="cencel" class="btn red cancel"
+																					action="#{identifier.cencelDiagram}" value="Cancel">
+																					<f:ajax
+																						render="inputForm:diagramLable inputForm:file" />
+																				</h:commandButton>
+																			</td>
+
+																		</tr>
+
+																	</tbody>
+																</table>
+															</h:panelGroup>
+
+														</div>
+													</div>
+												</div>
+
+
+
+												<hr />
+												<div class="table-scrollable table-scrollable-borderless">
+													<h:dataTable id="mis" value="#{identifier.mistakes}"
+														var="mistake"
+														styleClass="table table-striped table-hover dataTable"
+														headerClass="uppercase" rowClasses="fit">
+														<h:column>
+															<f:facet name="header">Mistake Type</f:facet>
+			#{mistake.type}
+		</h:column>
+														<h:column>
+															<f:facet name="header">Model Type</f:facet>
+			#{mistake.modelType}
+		</h:column>
+														<h:column>
+															<f:facet name="header">Mistake</f:facet>
+			#{mistake.errorName}
+		</h:column>
+														<h:column>
+															<f:facet name="header">Element</f:facet>
+			#{mistake.elementName}
+		</h:column>
+
+														<h:column>
+															<f:facet name="header">Description</f:facet>
+			#{mistake.errorDiscrption}
+		</h:column>
+
+
+													</h:dataTable>
+												</div>
+											</h:form>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END PAGE CONTENT -->
+				</div>
+			</div>
+		</div>
+	</ui:define>
+	<ui:define name="scripts">
+		<script>
+			jQuery(document).ready(function() {
+				// initiate layout and plugins
+				Metronic.init(); // init metronic core components
+				Layout.init(); // init current layout
+				Demo.init(); // init demo features
+			});
+		</script>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+    http://www.springframework.org/schema/jee 
+    http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+	http://www.springframework.org/schema/data/jpa
+	http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd
+	http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util.xsd
+	http://www.springframework.org/schema/jdbc 
+	http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+    ">
+
+
+	<!-- <jee:jndi-lookup id="dataSource" jndi-name="jdbc/tomcatDataSource" 
+		lookup-on-startup="false" proxy-interface="javax.sql.DataSource" /> -->
+
+	<util:properties id="jdbcprop"
+		location="classpath:META-INF/dataSource.properties" />
+
+	<!-- <bean id="dataSource" class="oracle.jdbc.pool.OracleDataSource" destroy-method="close"> 
+		<property name="driverType"> <value>#{jdbcprop.driverType}</value> </property> 
+		<property name="URL"> <value>#{jdbcprop.URL}</value> </property> <property 
+		name="user"> <value>#{jdbcprop.user}</value> </property> <property name="password"> 
+		<value>#{jdbcprop.password}</value> </property> <property name="connectionCachingEnabled"> 
+		<value>true</value> </property> </bean> -->
+
+	<bean class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close" id="dataSource">
+		<property name="driverClassName" value="org.h2.Driver" />
+		<property name="url"
+			value="jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;MODE=Oracle;TRACE_LEVEL_SYSTEM_OUT=2" />
+	</bean>
+
+	<!-- <bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" 
+		id="dataSource"> <property name="driverClassName" value="org.hsqldb.jdbcDriver" 
+		/> <property name="url" value="jdbc:hsqldb:mem:testdb;DB_CLOSE_DELAY=-1;MODE=Oracle;TRACE_LEVEL_SYSTEM_OUT=2" 
+		/> <property name="username" value="sa" /> <property name="password" value="" 
+		/> </bean> -->
+	<!-- <jdbc:embedded-database type="HSQL" id="dataSource" url="jdbc\:hsqldb\:mem\:umlcedb"> 
+		</jdbc:embedded-database> -->
+
+	<jdbc:initialize-database data-source="dataSource"
+		ignore-failures="ALL">
+		<jdbc:script location="classpath:INT_DB/PORTAL_USER.sql" />
+		<jdbc:script location="classpath:INT_DB/ROLE.sql" />
+		<jdbc:script location="classpath:INT_DB/PERMISSION.sql" />
+		<jdbc:script location="classpath:INT_DB/PERMISSION_LEVEL.sql" />
+		<jdbc:script location="classpath:INT_DB/PORTAL_USER_ROLE.sql" />
+		<jdbc:script location="classpath:INT_DB/ROLE_PERMISSION.sql" />
+		<jdbc:script location="classpath:INT_DB/PERMISSION_PERMISSION_LEVEL.sql" />
+		<jdbc:script location="classpath:INT_DB/USER_SEQ.sql" />
+		<jdbc:script location="classpath:INT_DB/ROLE_SEQ.sql" />
+		<jdbc:script location="classpath:INT_DB/PERMISSION_LEVEL_SEQ.sql" />
+		<jdbc:script location="classpath:INT_DB/PERMISSION_SEQ.sql" />
+	</jdbc:initialize-database>
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceProviderClass" value="org.hibernate.ejb.HibernatePersistence" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="persistenceUnitName" value="umlcePortalPU" />
+		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">#{jdbcprop.dialect}</prop>
+				<!-- <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop> -->
+				<!-- <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop> -->
+				<prop key="hibernate.enable_lazy_load_no_trans">true</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" />
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<bean
+		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+	<jpa:repositories base-package="com.mbe.umlce.repository"
+		entity-manager-factory-ref="entityManagerFactory"
+		transaction-manager-ref="transactionManager" />
+
+</beans>

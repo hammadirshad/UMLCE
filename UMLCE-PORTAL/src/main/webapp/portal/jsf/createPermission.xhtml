@@ -1,0 +1,118 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" template="/theme/master.xhtml">
+	<ui:define name="body">
+		<div class="page-content">
+
+			<!-- BEGIN PAGE HEADER-->
+
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li><i class="fa fa-home"></i> <h:link outcome="/index.xhtml">Home</h:link>
+						<i class="fa fa-angle-right"></i></li>
+					<li><a href="#">Page Layouts</a> <i class="fa fa-angle-right"></i></li>
+					<li><a href="#">Layout with Fontawesome Icons</a></li>
+				</ul>
+
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div
+						class="tabbable tabbable-custom tabbable-noborder tabbable-reversed">
+						<div class="portlet box blue">
+							<div class="portlet-title">
+								<div class="caption">
+									<i class="fa fa-gift"></i>Form Sample
+								</div>
+								<div class="tools">
+									<a href="javascript:;" class="collapse"> </a> <a
+										href="#portlet-config" data-toggle="modal" class="config">
+									</a> <a href="javascript:;" class="reload"> </a> <a
+										href="javascript:;" class="remove"> </a>
+								</div>
+							</div>
+							<div class="portlet-body form">
+								<!-- BEGIN FORM-->
+								<h:form class="horizontal-form">
+									<div class="form-body">
+										<h3 class="form-section">Permission Info</h3>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label">Permission Name</label>
+													<h:inputText type="text" id="firstName"
+														value="#{PermissionBean.name}" class="form-control"
+														placeholder="Permission Name" />
+												</div>
+											</div>
+											<!--/span-->
+										</div>
+										<!--/row-->
+										<h3 class="form-section">Permision Levels</h3>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label col-md-2">View</label>
+													<h:selectBooleanCheckbox type="checkbox"
+														class="make-switch" value="#{PermissionBean.view}"
+														data-on-text="ON" />
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label col-md-2">Update</label>
+													<h:selectBooleanCheckbox type="checkbox"
+														class="make-switch" value="#{PermissionBean.update}"
+														data-on-text="ON" />
+												</div>
+											</div>
+										</div>
+										<!--/span-->
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label col-md-2">Add</label>
+													<h:selectBooleanCheckbox type="checkbox"
+														class="make-switch" value="#{PermissionBean.add}"
+														data-on-text="ON" />
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label col-md-2">Delete</label>
+													<h:selectBooleanCheckbox type="checkbox"
+														class="make-switch" value="#{PermissionBean.delete}"
+														data-on-text="ON" />
+												</div>
+											</div>
+										</div>
+										<!--/span-->
+
+									</div>
+									<div class="form-actions right">
+										<h:commandButton type="button" value="Cancel"
+											class="btn default"></h:commandButton>
+										<h:commandButton type="submit" value="Create"
+											action="#{PermissionBean.createPermission}" class="btn blue"></h:commandButton>
+									</div>
+								</h:form>
+								<!-- END FORM-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+	<ui:define name="scripts">
+		<script>
+			jQuery(document).ready(function() {
+				// initiate layout and plugins
+				Metronic.init(); // init metronic core components
+				Layout.init(); // init current layout
+				Demo.init(); // init demo features
+			});
+		</script>
+	</ui:define>
+</ui:composition>

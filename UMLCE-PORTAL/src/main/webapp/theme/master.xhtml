@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title><ui:insert name="title">UML Comparator And Evaluator</ui:insert></title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<meta content="" name="description" />
+	<meta content="" name="Fonix Developers" />
+	
+
+	
+<!-- 	<link
+		href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700 subset=all"
+		rel="stylesheet" type="text/css" />
+
+	<h:outputStylesheet library="resources/global/plugins/font-awesome/css"
+		name="font-awesome.min.css" />
+
+	<h:outputStylesheet
+		library="resources/global/plugins/simple-line-icons"
+		name="simple-line-icons.min.css" />
+
+	<h:outputStylesheet library="resources/global/plugins/bootstrap/css"
+		name="bootstrap.min.css" />
+
+	<h:outputStylesheet library="resources/global/plugins/uniform/css"
+		name="uniform.default.css" />
+	 -->
+	
+	<link
+		href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700 subset=all"
+		rel="stylesheet" type="text/css" />
+	<link
+		href="../../resources/global/plugins/font-awesome/css/font-awesome.min.css"
+		rel="stylesheet" type="text/css" />
+	<link
+		href="../../resources/global/plugins/simple-line-icons/simple-line-icons.min.css"
+		rel="stylesheet" type="text/css" />
+	<link
+		href="../../resources/global/plugins/bootstrap/css/bootstrap.min.css"
+		rel="stylesheet" type="text/css" />
+	<link
+		href="../../resources/global/plugins/uniform/css/uniform.default.css"
+		rel="stylesheet" type="text/css" />
+	<link
+		href="../../resources/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css"
+		rel="stylesheet" type="text/css" />
+	<!-- END GLOBAL MANDATORY STYLES -->
+	<!-- BEGIN THEME STYLES -->
+	<link href="../../resources/global/css/components.css" rel="stylesheet"
+		type="text/css" />
+	<link href="../../resources/global/css/plugins.css" rel="stylesheet"
+		type="text/css" />
+	<link href="../../resources/css/layout.css" rel="stylesheet"
+		type="text/css" />
+	<link id="style_color" href="../../resources/css/themes/default.css"
+		rel="stylesheet" type="text/css" />
+	<link href="../../resources/css/custom.css" rel="stylesheet"
+		type="text/css" />
+	<!-- END THEME STYLES -->
+
+	<ui:insert name="styles"></ui:insert>
+	<!-- END THEME STYLES -->
+	<link rel="shortcut icon" href="favicon.ico" />
+</h:head>
+<h:body
+	class="page-boxed page-header-fixed page-container-bg-solid page-sidebar-closed-hide-logo page-sidebar-closed-hide-logo page-fontawesome">
+
+	<div class="page-header navbar navbar-fixed-top">
+		<!-- BEGIN HEADER INNER -->
+		<div class="page-header-inner container">
+			<!-- BEGIN LOGO -->
+			<div class="page-logo">
+				<h:link outcome="/index.xhtml">
+					<img src="../../resources/img/log.png" alt="logo" class="logo-default" />
+				</h:link>
+				<div class="menu-toggler sidebar-toggler">
+					<!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+				</div>
+			</div>
+			<!-- END LOGO -->
+			<!-- BEGIN RESPONSIVE MENU TOGGLER -->
+			<a href="javascript:;" class="menu-toggler responsive-toggler"
+				data-toggle="collapse" data-target=".navbar-collapse"> </a>
+			<!-- END RESPONSIVE MENU TOGGLER -->
+			<!-- BEGIN PAGE TOP -->
+			<div class="page-top">
+				<!-- BEGIN HEADER SEARCH BOX -->
+				<!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
+				<form class="search-form search-form-expanded" action=""
+					method="get">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search..."
+							name="query" /> <span class="input-group-btn"> <a
+							href="javascript:;" class="btn submit"><i
+								class="icon-magnifier"></i></a>
+						</span>
+					</div>
+				</form>
+				<!-- END HEADER SEARCH BOX -->
+			</div>
+			<!-- END PAGE TOP -->
+		</div>
+		<!-- END HEADER INNER -->
+	</div>
+	<!-- END HEADER -->
+	<div class="clearfix"></div>
+	<div class="container">
+		<!-- BEGIN CONTAINER -->
+		<div class="page-container">
+			<!-- BEGIN SIDEBAR -->
+			<div class="page-sidebar navbar-collapse collapse">
+				<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+				<!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+				<!-- BEGIN SIDEBAR MENU1 -->
+				<ul class="page-sidebar-menu page-sidebar-menu-compact"
+					data-auto-scroll="true" data-slide-speed="200">
+					<li class="start active open"><h:link outcome="/index.xhtml">
+							<i class="fa fa-home"></i>
+							<span class="title">Dashboard</span>
+						</h:link></li>
+					<li><a href="javascript:;"> <i class="fa fa-cogs"></i> <span
+							class="title">Mistakes</span> <span class="arrow "></span></a>
+						<ul class="sub-menu">
+							<li><h:link outcome="/Identifier/UCDMistakes.xhtml">
+									<i class="icon-briefcase"></i> Usecase Diagram</h:link></li>
+							<li><h:link outcome="/Identifier/ADMistakes.xhtml">
+									<i class="icon-briefcase"></i> Activity Diagram</h:link></li>		
+							<li><h:link outcome="/Identifier/DMMistakes.xhtml">
+									<i class="icon-briefcase"></i> Domain Model</h:link></li>
+							<li><h:link outcome="/Identifier/SSDMistakes.xhtml">
+									<i class="icon-briefcase"></i>System Sequence Diagram</h:link></li>
+							<li><h:link outcome="/Identifier/SDMistakes.xhtml">
+									<i class="icon-briefcase"></i> Sequence Diagram</h:link></li>
+							<li><h:link outcome="/Identifier/CDMistakes.xhtml">
+									<i class="icon-briefcase"></i> Class Diagram</h:link></li>
+						</ul></li>
+
+					<li><a href="javascript:;"> <i class="fa fa-cogs"></i> <span
+							class="title">Evaluation</span> <span class="arrow "></span></a>
+						<ul class="sub-menu">
+							<li><h:link outcome="/Evaluator/UDEvaluation.xhtml">
+									<i class="icon-briefcase"></i> Usecase Diagram</h:link></li>
+							<li><h:link outcome="/Evaluator/ADEvaluation.xhtml">
+									<i class="icon-briefcase"></i> Activity Diagram</h:link></li>				
+							<li><h:link outcome="/Evaluator/DMEvaluation.xhtml">
+									<i class="icon-briefcase"></i> Domain Model</h:link></li>
+							<li><h:link outcome="/Evaluator/SSDEvaluation.xhtml">
+									<i class="icon-briefcase"></i>System Sequence Diagram</h:link></li>
+							<li><h:link outcome="/Evaluator/SDEvaluation.xhtml">
+									<i class="icon-briefcase"></i> Sequence Diagram</h:link></li>
+							<li><h:link outcome="/Evaluator/CDEvaluation.xhtml">
+									<i class="icon-briefcase"></i> Class Diagram</h:link></li>
+						</ul></li>
+
+					<li><a href="javascript:;"> <i class="fa fa-cogs"></i> <span
+							class="title">Plagiarism</span> <span class="arrow "></span></a>
+						<ul class="sub-menu">
+							<li><h:link outcome="/Comparator/UCPlagiarismChecker.xhtml">
+									<i class="icon-briefcase"></i> Usecase Diagram</h:link></li>
+							<li><h:link outcome="/Comparator/ADPlagiarismChecker.xhtml">
+									<i class="icon-briefcase"></i> Activity Diagram</h:link></li>		
+							<li><h:link outcome="/Comparator/DMPlagiarismChecker.xhtml">
+									<i class="icon-briefcase"></i> Domain Model</h:link></li>
+							<li><h:link outcome="/Comparator/SSDPlagiarismChecker.xhtml">
+									<i class="icon-briefcase"></i>System Sequence Diagram</h:link></li>
+							<li><h:link outcome="/Comparator/SDPlagiarismChecker.xhtml">
+									<i class="icon-briefcase"></i> Sequence Diagram</h:link></li>
+							<li><h:link outcome="/Comparator/CDPlagiarismChecker.xhtml">
+									<i class="icon-briefcase"></i> Class Diagram</h:link></li>
+						</ul></li>
+
+
+					<li class="last"><a href="javascript:;"> <i
+							class="fa fa-cogs"></i> <span class="title">Code Mapping</span> <span
+							class="arrow "></span></a>
+						<ul class="sub-menu">
+							<li><h:link outcome="/Mapper/codeToClassDiagramMaper.xhtml">
+									<i class="icon-briefcase"></i> Class Diagram</h:link></li>
+							<li><h:link
+									outcome="/Mapper/codeToSequenceDiagramMaper.xhtml">
+									<i class="icon-briefcase"></i> Sequence Diagram</h:link></li>
+							<li><h:link
+									outcome="/Mapper/codeToPackageDiagramMaper.xhtml">
+									<i class="icon-briefcase"></i> Package Diagram</h:link></li>
+
+						</ul></li>
+
+
+
+
+				</ul>
+				<!-- END SIDEBAR MENU1 -->
+			</div>
+			<!-- END SIDEBAR -->
+			<!-- BEGIN CONTENT -->
+			<div class="page-content-wrapper">
+				<ui:insert name="body"></ui:insert>
+			</div>
+			<!-- END CONTENT -->
+			<!-- BEGIN QUICK SIDEBAR -->
+			<!--Cooming Soon...-->
+			<!-- END QUICK SIDEBAR -->
+		</div>
+		<!-- END CONTAINER -->
+		<!-- BEGIN FOOTER -->
+		<div class="page-footer">
+			<div class="page-footer-inner">2014 Fonixdevelopers. All Rights
+				Reserved.</div>
+			<div class="scroll-to-top">
+				<i class="icon-arrow-up"></i>
+			</div>
+		</div>
+		<!-- END FOOTER -->
+	</div>
+
+
+	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+	<!-- BEGIN CORE PLUGINS -->
+	<!--[if lt IE 9]>
+<script src="../../resources/global/plugins/respond.min.js"></script>
+<script src="../../resources/global/plugins/excanvas.min.js"></script> 
+<![endif]-->
+	<script src="../../resources/global/plugins/jquery-1.11.0.min.js"
+		type="text/javascript"></script>
+	<script src="../../resources/global/plugins/jquery-migrate-1.2.1.min.js"
+		type="text/javascript"></script>
+	<!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+	<script
+		src="../../resources/global/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js"
+		type="text/javascript"></script>
+	<script src="../../resources/global/plugins/bootstrap/js/bootstrap.min.js"
+		type="text/javascript"></script>
+	<script
+		src="../../resources/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"
+		type="text/javascript"></script>
+	<script
+		src="../../resources/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js"
+		type="text/javascript"></script>
+	<script src="../../resources/global/plugins/jquery.blockui.min.js"
+		type="text/javascript"></script>
+	<script src="../../resources/global/plugins/jquery.cokie.min.js"
+		type="text/javascript"></script>
+	<script src="../../resources/global/plugins/uniform/jquery.uniform.min.js"
+		type="text/javascript"></script>
+	<script
+		src="../../resources/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js"
+		type="text/javascript"></script>
+
+	<!-- END CORE PLUGINS -->
+
+
+
+	<script src="../../resources/global/scripts/metronic.js"
+		type="text/javascript"></script>
+	<script src="../../resources/scripts/layout.js" type="text/javascript"></script>
+	<script src="../../resources/scripts/demo.js" type="text/javascript"></script>
+	<ui:insert name="scripts"></ui:insert>
+	<!-- END JAVASCRIPTS -->
+</h:body>
+</html>
