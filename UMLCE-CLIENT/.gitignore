@@ -4,6 +4,7 @@
 /bin/
 .DS_Store
 /*.iml
+*.iml
 .metadata
 bin/
 tmp/
