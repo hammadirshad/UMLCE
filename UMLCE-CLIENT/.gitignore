@@ -22,5 +22,3 @@ local.properties
 .texlipse
 .springBeans
 .recommenders/
-*.iml
-/.gitignore
